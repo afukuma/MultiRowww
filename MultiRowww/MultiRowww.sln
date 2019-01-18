@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiRowww", "MultiRowww\MultiRowww.csproj", "{588F7BBE-AA64-45CE-9129-31232AB38183}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{588F7BBE-AA64-45CE-9129-31232AB38183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{588F7BBE-AA64-45CE-9129-31232AB38183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{588F7BBE-AA64-45CE-9129-31232AB38183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{588F7BBE-AA64-45CE-9129-31232AB38183}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6709DF62-CA7F-4DE3-A799-88AF0CECA993}
+	EndGlobalSection
+EndGlobal
