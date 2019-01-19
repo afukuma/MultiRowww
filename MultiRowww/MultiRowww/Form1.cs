@@ -176,6 +176,18 @@ namespace MultiRowww
             return -1;
         }
 
-
+        /// <summary>
+        /// セル結合みたいに見せる
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == 1 )//&& e.RowIndex == 1)
+            {
+                //e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+                e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+            }
+        }
     }
 }
