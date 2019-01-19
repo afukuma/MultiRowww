@@ -36,7 +36,8 @@ namespace MultiRowww
 
 
         //dataGrid用設定
-        private DataGridViewCellStyle defaultCellStyle;     //デフォルトのセルスタイル
+        private DataGridViewCellStyle default1CellStyle;    //デフォルトのセルスタイル
+        private DataGridViewCellStyle default2CellStyle;    //デフォルトのセルスタイル
         private DataGridViewCellStyle mouseCellStyle;       //マウスポインタの下にあるセルのセルスタイル
 
 
@@ -51,8 +52,7 @@ namespace MultiRowww
         private void Form1_Load(object sender, EventArgs e)
         {
             //テストデータ作成
-
-            for (int i = 0; i < 300; i++)
+            for (int i = 1; i <= 300; i++)
             {
                 sData wData = new sData();
                 wData.key = i;
@@ -67,18 +67,23 @@ namespace MultiRowww
             dataGridView2.DataSource = lData;
             dataGridView2.AutoResizeColumns();
 
+
             // デフォルトのセルスタイルの設定
-            this.defaultCellStyle = new DataGridViewCellStyle();
+            this.default1CellStyle = new DataGridViewCellStyle();
+            this.default2CellStyle = new DataGridViewCellStyle();
+            this.default2CellStyle.BackColor = Color.LemonChiffon;
+
             //現在のセルのセルスタイルの設定
             this.mouseCellStyle = new DataGridViewCellStyle();
-            this.mouseCellStyle.BackColor = Color.LightGreen;
-            this.mouseCellStyle.SelectionBackColor = Color.Green;
+            this.mouseCellStyle.BackColor = Color.DeepSkyBlue;
+            this.mouseCellStyle.SelectionBackColor = Color.Navy;
 
+
+            //１行を２行に変換する
             List<sDisp> lDisp = new List<sDisp>();
             sDisp wDisp;
             foreach (sData wData in lData)
             {
-                //１行を２行に変換する
                 wDisp = new sDisp();
                 wDisp.key = wData.key;
                 wDisp.dispkey = wData.key.ToString();  //表示用キーは１段目のみに表示する
@@ -94,8 +99,10 @@ namespace MultiRowww
             }
             //分解後のデータを表示
             dataGridView1.DataSource = lDisp;
-            //dataGridView1.Columns[0].Width = 10;
             dataGridView1.AutoResizeColumns();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView1.MultiSelect = false;
+
             ColorAllReset();
         }
 
@@ -111,10 +118,10 @@ namespace MultiRowww
                 //ペアとなるRow
                 int pearRow = PearRowIndex(e.RowIndex);
 
-                for (int i = 1; i < dgv.Columns.Count; i++)
+                for (int c = 1; c < dgv.Columns.Count; c++)
                 {
-                    dgv[i, e.RowIndex].Style = this.mouseCellStyle;
-                    if (pearRow >= 0) dgv[i, pearRow].Style = this.mouseCellStyle;
+                    dgv[c, e.RowIndex].Style = this.mouseCellStyle;
+                    if (pearRow >= 0) dgv[c, pearRow].Style = this.mouseCellStyle;
                 }
 
                 Text = PearRowIndex(e.RowIndex).ToString();
@@ -124,17 +131,6 @@ namespace MultiRowww
         //DataGridView1のCellLeaveイベントハンドラ
         private void DataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            /*
-            //ヘッダー以外のセル
-            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-            {
-                DataGridView dgv = (DataGridView)sender;
-                for (int i = 1; i < dgv.Columns.Count; i++)
-                {
-                    dgv[i, e.RowIndex].Style = this.defaultCellStyle;
-                }
-            }
-            */
             ColorAllReset();
         }
 
@@ -146,7 +142,12 @@ namespace MultiRowww
             {
                 for (int r = 0; r < dataGridView1.Rows.Count; r++)
                 {
-                    dataGridView1[c, r].Style = this.defaultCellStyle;
+                    dataGridView1[c, r].Style = this.default1CellStyle;
+                    if(dataGridView1["dispkey", r].Value+"" == "")
+                    {
+                        dataGridView1[c, r].Style = this.default2CellStyle;
+                    }
+
                 }
             }
         }
